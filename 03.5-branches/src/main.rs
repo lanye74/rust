@@ -14,7 +14,7 @@ fn main() {
 
 
 	// if else arms must be same type
-	let ternary = if value == true {5} else {84};
+	let _ternary = if value == true {5} else {84};
 
 
 	// loops are expressions

@@ -6,14 +6,14 @@ fn main() {
 
 	// note: this weird behavior with blocks
 
-	const X: i8 = {
+	const _X: i8 = {
 		let y = 4;
 		// note the lack of semicolon
 		// if there was one here then it would be a statement (no return)
 		y / 2
 	};
 
-	let y = returnless_function();
+	let _y = returnless_function();
 }
 
 
