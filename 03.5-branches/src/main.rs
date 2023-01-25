@@ -34,7 +34,7 @@ fn main() {
 
 	// this is neat ig
 	'named_loop: loop {
-		if(n == 20) {
+		if n == 20 {
 			break 'named_loop;
 		}
 	}
