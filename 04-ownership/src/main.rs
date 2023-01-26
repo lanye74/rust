@@ -16,7 +16,15 @@ fn main() {
 	// this is "immutable" according to the book? but this works
 	// let mut my_string = "hello, world!";
 
-	// my_string = "abcd";
+	// my_string = "abcdsgdkjfdkjkjlfdslkjfdsskjlgsdkgfjdkgflklsgjflkgdsgsdgsdgfsdgsdgf";
 
-    // println!("{}", my_string);
+	// println!("{}", my_string);
+
+	// whatever. use string literal for constants, and otherwise, use String ig
+
+	// alternate: "hello".to_string();
+	let mut mut_string = String::from("Hello");
+
+	mut_string.push(',');
+	mut_string.push_str(" world!");
 }
