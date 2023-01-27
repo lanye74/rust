@@ -5,7 +5,6 @@ fn main() {
 
 	let _my_value = 5;
 
-
 	// you can create scopes anywhere you feel like in rust
 	// i think you can in js too but uhhh don't
 	{
@@ -15,6 +14,7 @@ fn main() {
 
 	// my value is 5
 	// variable shadowing can change a variable's type, but not re-assignment via mut
+
 
 	let _char = 'a';
 
