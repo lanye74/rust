@@ -55,33 +55,8 @@ fn main() {
 	let str4 = str3.clone();
 
 	assert_ne!(format!("{:p}", &str3), format!("{:p}", &str4));
-
-
-	let str5 = String::from("hello");
-	mine(str5);
-
-	// str5 has now been borrowed. no more using it
-
-	let str6 = String::from("salutations");
-	let str7 = mine_then_yours(str6);
-	// str6 has been moved. however, str7 is valid
-	// println!("{str6}");
-
-	// this is tedious. instead, we can use references
 }
 
-
-
-fn mine(input: String) {
-	println!("{input}");
-}
-
-
-
-fn mine_then_yours(input: String) -> String {
-	println!("{input}");
-	return input;
-}
 
 
 // this function doesn't work because it prints the address of the argument (?) I'm not sure
