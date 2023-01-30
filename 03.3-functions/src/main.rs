@@ -6,6 +6,7 @@ fn main() {
 
 	// note: this weird behavior with blocks
 
+	// X = 2
 	const _X: i8 = {
 		let y = 4;
 		// note the lack of semicolon
@@ -26,5 +27,5 @@ fn yawn_i_can_do_this_already(real: bool) {
 
 fn returnless_function() -> i8 {
 	// personally i hate this pattern and i would much rather use return always. but it's something you can do
-	73
+	return 73;
 }

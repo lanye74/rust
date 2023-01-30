@@ -31,6 +31,7 @@ fn main() {
 
 	// simple types, like ints, are cloned
 	// this is because they have a fixed size and are on the stack, thus quick to clone
+	// all number types, bools, characters, and tuples (if all types implement the Copy trait) are cloned
 	let int1 = 5;
 	let int2 = int1;
 
@@ -41,7 +42,7 @@ fn main() {
 	let _str2 = str1;
 
 	// str2 is a reference to str1, but also, we are *moving* str1 into str2
-	// you could consider this a shallow copy (creating another poiner to s1's data; reminder that s1 itself is a pointer)
+	// you could consider this a shallow copy (creating another pointer to s1's data; reminder that s1 itself is a pointer to data on the heap)
 	// except for the fact that str1 is being dereferenced
 	// this happens because str1 would be dropped from memory twice if it wasn't
 
@@ -55,12 +56,40 @@ fn main() {
 
 	assert_ne!(format!("{:p}", &str3), format!("{:p}", &str4));
 
+
+	let str5 = String::from("hello");
+	mine(str5);
+
+	// str5 has now been borrowed. no more using it
+
+	let str6 = String::from("salutations");
+	let str7 = mine_then_yours(str6);
+	// str6 has been moved. however, str7 is valid
+	// println!("{str6}");
+
+	// this is tedious. instead, we can use references
 }
 
 
 
+fn mine(input: String) {
+	println!("{input}");
+}
+
+
+
+fn mine_then_yours(input: String) -> String {
+	println!("{input}");
+	return input;
+}
+
+
 // this function doesn't work because it prints the address of the argument (?) I'm not sure
 // it would be lovely to have a function that prints the address of a given variable. alas
+
+
+// having scrolled down the page, the issue is that, again, integers are cloned
+// if this function took a string as an argument, this would be ok
 
 // fn format_address(variable: &i32) -> String {
 // 	return format!("{:p}", &variable);
