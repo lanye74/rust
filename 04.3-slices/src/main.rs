@@ -1,5 +1,6 @@
 fn main() {
-	let string = String::from("hello world this is multiple words");
+	// slice: a reference to a section of a whole collection
+	let string = String::from("hello world");
 
 	let bytes = string.as_bytes();
 
