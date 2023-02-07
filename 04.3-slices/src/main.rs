@@ -1,6 +1,6 @@
 fn main() {
 	// slice: a reference to a section of a whole collection
-	let mut string = String::from("hello world");
+	let string = String::from("hello world");
 
 	let word = first_word(&string);
 
@@ -19,9 +19,7 @@ fn main() {
 	// you can also slice arrays
 	let array = [1, 2, 3, 4, 5];
 	// from index 1 to element 3... idk why it's like this but it happens in a bunch of other languages so
-	let slice = &array[1..3];
-
-
+	let _slice = &array[1..3];
 }
 
 
