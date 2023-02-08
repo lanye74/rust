@@ -1,0 +1,9 @@
+{
+	"name": "04.x-league-search-ts",
+	"version": "1.0.0",
+	"description": "typescript implementation of league search function",
+	"main": "main.js",
+	"scripts": {},
+	"author": "Layne Ogden",
+	"license": "MIT"
+}
