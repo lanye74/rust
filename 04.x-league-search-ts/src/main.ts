@@ -25,41 +25,44 @@ function search(query: string) {
 	// stored as [championIndex, index of last character matched]
 	let filtered: Map<string, number> = new Map();
 
+	let championsIterable = Object.entries(champions);
 
 	for(const [searchIndex, character] of Object.entries(queryCharacters)) {
-		for(const [championIndex, champion] of Object.entries(champions)) {
+		for(const [championIndex, champion] of championsIterable) {
 			let characterIndex = champion.toLowerCase().indexOf(character);
 
+			// character is not in string. don't bother
 			if(characterIndex === -1) {
 				filtered.delete(championIndex);
 				continue;
 			}
 
+
+			// character is in string, but it's the first pass and the champion isn't in the map. set it
 			if(!filtered.has(championIndex) && searchIndex === "0") {
 				filtered.set(championIndex, characterIndex);
 				continue;
 			}
 
+			// the champion isn't in the map, contains the target character;
+			// but it isn't the first pass, so it was removed for a reason. ignore it
 			if(!filtered.has(championIndex) && searchIndex !== "0") {
 				continue;
 			}
 
-			// champion exists in filtered and contains this character
+			// champion exists in the map and contains this character
 			characterIndex = champion.toLowerCase().indexOf(character, filtered.get(championIndex)! + 1);
 			if(characterIndex === -1) {
-				// character exists in the string, but it comes before the most recent found character
+				// character exists in the champion name, but it comes before the most recent found character
 				filtered.delete(championIndex);
 				continue;
 			}
 
-			// we're good!
+			// champion has the desired character present after the last matched one. we're good!
 			filtered.set(championIndex, characterIndex);
-
-			console.log(filtered)
 		}
 	}
 
-	// debugger
 
 	let filteredChampions = Array.from(filtered.keys());
 
