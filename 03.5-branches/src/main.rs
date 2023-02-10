@@ -40,4 +40,25 @@ fn main() {
 	}
 
 
+	// apparently i missed some of 3.5???
+	while true == false {
+
+	}
+
+
+	let array = [1, 2, 3, 4];
+
+	for _element in array {
+		// do things
+	}
+
+	for _number in 1..4 {
+		// same thing!
+	}
+
+	for _number in (1..4).rev() {
+		// 4, 3, 2, 1
+	}
+
+
 }

@@ -32,7 +32,6 @@ fn main() {
 
 	// let input_chars: Vec<char> = input.chars().map(|char| char.to_ascii_lowercase()).collect();
 	let input_chars: Vec<char> = input.to_ascii_lowercase().chars().collect();
-	let char = input_chars[0];
 
 	// https://doc.rust-lang.org/book/ch08-01-vectors.html
 	let mut output_vec: Vec<&str> = vec![];
@@ -42,11 +41,12 @@ fn main() {
 	// either i can turn these into tuples with (champ, index of matched character)
 	// or just... give up
 	// might need to make an implementation in typescript to get a better grasp of what i should be doing
-	for (_i, champ) in champs_vec.iter().enumerate() {
-		if champ.to_ascii_lowercase().contains(char) {
-			output_vec.push(champ);
-		}
-	}
+
+
+	// for()
+
+
+
 
 	let champs_output = output_vec.join(", ");
 
