@@ -82,14 +82,14 @@ fn find_from_position(string: &str, character: char, position: usize) -> isize {
 	while i < len {
 		// let
 
-		let char = match characters.nth(i).unwrap() {
-			Some(n) => {
+		// let char = match characters.nth(i).unwrap() {
+		// 	Some(n) => {
 
-			},
-			None => {
+		// 	},
+		// 	None => {
 
-			}
-		}
+		// 	}
+		// };
 
 		i += 1;
 	}
