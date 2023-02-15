@@ -68,7 +68,7 @@ fn main() {
 
 	// see also: dbg! macro which prints more advanced info about line
 	// dbg! macro takes ownership and returns a new variable which allows you to do this
-	let my_other_other_point = Point(4.0, dbg!(mid.1 * 7.0), -5.0);
+	let _my_other_other_point = Point(4.0, dbg!(mid.1 * 7.0), -5.0);
 
 
 	// methods on structs
