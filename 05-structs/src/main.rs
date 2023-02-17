@@ -3,7 +3,7 @@ struct Champion {
 	resource: String,
 	attack_type: String,
 	roles: Vec<String>,
-	cs: i32
+	cs: u32
 }
 
 
