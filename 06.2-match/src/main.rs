@@ -13,8 +13,25 @@ enum RubiksColors {
 fn main() {
 	let sticker_color = RubiksColors::Red;
 
-	// this code is completley redundant but it shows how to exhaust match arms
+	// this code is completely redundant but it shows how to exhaust match arms
 	map_to_number(sticker_color);
+
+	let option = Some(5);
+
+	let _option_plus_one = match option {
+		// wrapping i + 1 in a some allows you to return None as opposed to like... -1 or something
+		Some(i) => Some(i + 1),
+		None => None
+	};
+
+
+	let _unwrap = match option {
+		Some(5) => {
+			println!("value is 5");
+		},
+		// can also be a variable name
+		_ => ()
+	};
 }
 
 

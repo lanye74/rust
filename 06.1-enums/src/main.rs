@@ -56,7 +56,7 @@ enum Point {
 
 fn main() {
 	// kayn is my favorite champion btw :)
-	let kayn = Champion {
+	let _kayn = Champion {
 		name: String::from("Kayn"),
 		damage_type: DamageType::AD,
 		range_type: RangeType::Melee,
@@ -64,7 +64,7 @@ fn main() {
 		role: vec![Role::Jungle]
 	};
 
-	let swain = Champion {
+	let _swain = Champion {
 		name: String::from("Swain"),
 		damage_type: DamageType::AP,
 		range_type: RangeType::Ranged,
@@ -73,8 +73,8 @@ fn main() {
 	};
 
 
-	let point_one = Point::TwoD(-4.0, 5.0);
-	let point_two = Point::ThreeD(1.0, -7.0, 2.0);
+	let _point_one = Point::TwoD(-4.0, 5.0);
+	let _point_two = Point::ThreeD(1.0, -7.0, 2.0);
 
 
 	let some_x = Some(5);
