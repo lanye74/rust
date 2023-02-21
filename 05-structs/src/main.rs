@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 struct Champion {
 	name: String,
 	resource: String,

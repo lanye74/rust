@@ -1,3 +1,5 @@
+// #![allow(dead_code)]
+#[allow(dead_code)]
 enum DamageType {
 	AP,
 	AD
@@ -12,6 +14,7 @@ enum RangeType {
 
 
 
+#[allow(dead_code)]
 enum Resource {
 	Mana,
 	Energy,
@@ -20,6 +23,7 @@ enum Resource {
 
 
 
+#[allow(dead_code)]
 enum Role {
 	Top,
 	Jungle,
@@ -30,6 +34,7 @@ enum Role {
 
 
 
+#[allow(dead_code)]
 struct Champion {
 	name: String,
 	damage_type: DamageType,
