@@ -1,4 +1,4 @@
-#![allow(unused)]
+// #![allow(unused)]
 
 use std::{fs, io::{self, BufRead, BufReader}, collections::HashMap};
 
@@ -31,7 +31,7 @@ fn main() {
 	println!("Enter your query...");
 	let input = read_line();
 
-	// let input_chars: Vec<char> = input.chars().map(|char| char.to_ascii_lowercase()).collect();
+	let input_chars: Vec<char> = input.chars().map(|char| char.to_ascii_lowercase()).collect();
 	let input_chars: Vec<char> = input.trim().to_ascii_lowercase().chars().collect();
 
 
@@ -56,7 +56,13 @@ fn main() {
 		let champions_iterable = _champions_iterable.clone();
 
 		for (champion_index, champion) in champions_iterable {
-			// let character_index = champion.to_ascii_lowercase().find(character);
+			let mut character_index = champion.to_ascii_lowercase().find(*character);
+
+			let mut character_index = unwrap_index(character_index);
+
+			if character_index == -1 {
+				// filtered.remove(&champion_index);
+			}
 		}
 	}
 
@@ -68,35 +74,35 @@ fn main() {
 
 	// println!("Champions matching your search: {}", champs_output);
 
-	println!("{}", find_from_position("hello", 'h', 1));
+	println!("{}", find_from_position(String::from("hello"), 'l', 4));
 }
 
 
 
-fn find_from_position(string: &str, character: char, position: usize) -> isize {
+fn find_from_position(string: String, character: char, position: usize) -> isize {
 	// this is certainly one the functions i will write
-	let len = string.len();
-	let mut characters = string.chars();
+	// update: having rewritten it, it isn't really that scary
 
-	let mut i = position;
-	let mut found = false;
+	for (index, char) in string.chars().enumerate() {
+		if index < position {
+			continue;
+		}
 
-	while i < len {
-		// let
-
-		// let char = match characters.nth(i).unwrap() {
-		// 	Some(n) => {
-
-		// 	},
-		// 	None => {
-
-		// 	}
-		// };
-
-		i += 1;
+		if char == character {
+			return index as isize;
+		}
 	}
 
-	return if found == true {i.try_into().unwrap()} else {-1};
+	return -1;
+}
+
+
+
+fn unwrap_index(index: Option<usize>) -> isize {
+	return match index {
+		Some(n) => n as isize,
+		None => -1
+	};
 }
 
 
