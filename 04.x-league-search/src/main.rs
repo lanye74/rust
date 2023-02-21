@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 use std::{fs, io::{self, BufRead, BufReader}, collections::HashMap};
 
 // the more i delve into this the more i realize that it's way out of my... league (badum-tshh)
