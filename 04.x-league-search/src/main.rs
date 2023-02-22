@@ -1,33 +1,21 @@
-use std::{fs, io::{self, BufRead, BufReader}, collections::HashMap};
+use std::collections::HashMap;
 
-// the more i delve into this the more i realize that it's way out of my... league (badum-tshh)
+mod tools;
+mod io_util;
 
 
 
 fn main() {
 	let path = "./champs.txt";
 
-	// https://doc.rust-lang.org/book/ch12-02-reading-a-file.html
-	// https://doc.rust-lang.org/std/error/index.html#common-message-styles
-	// let champs = fs::read_to_string(path).expect("file should've been read!");
 
-	// https://doc.rust-lang.org/std/string/struct.String.html#method.split
-	// let mut champs_vec: Vec<&str> = champs.split('\n').collect();
-	// champs_vec.pop(); // remove newline
+	let file_buffer = io_util::read_file(&path);
 
-
-	// https://stackoverflow.com/questions/30801031/
-	let file = fs::File::open(path).expect("file should exist!");
-	// bufreader is beyond the realm of what i know but i just want to get this done tbh
-	let buf = BufReader::new(file);
-
-	let champs_vec: Vec<String> = buf.lines()
-		.map(|l| l.expect("should've been able to parse line!"))
-		.collect();
+	let champs_vec = tools::buffer_to_vec(file_buffer);
 
 
 	println!("Enter your query...");
-	let input = read_line();
+	let input = io_util::read_line();
 
 	let input_chars: Vec<char> = input.trim().to_ascii_lowercase().chars().collect();
 
@@ -48,7 +36,7 @@ fn main() {
 			let champion_lower = champion.to_ascii_lowercase();
 
 			// location of character in string
-			let character_index = unwrap_usize(champion_lower.find(*character));
+			let character_index = tools::unwrap_usize(champion_lower.find(*character));
 
 			let key_exists = filtered.contains_key(&champion_index);
 
@@ -78,7 +66,7 @@ fn main() {
 			let old_position = old_position.unwrap_or(&-1);
 
 			// find the location of the character and whether or not it came after the most recent found character
-			let character_index = find_from_position(champion_lower, *character, old_position + 1);
+			let character_index = tools::find_from_position(champion_lower, *character, old_position + 1);
 
 			if character_index == -1 {
 				// character exists in the champion name, but it comes before the most recent found character
@@ -100,48 +88,4 @@ fn main() {
 	champs_output.sort();
 
 	println!("Matched champions include: {}", champs_output.join(", "));
-}
-
-
-
-fn find_from_position(string: String, character: char, position: isize) -> isize {
-	// this is certainly one the functions i will write
-	// update: having rewritten it, it isn't really that scary
-
-	for (index, char) in string.chars().enumerate() {
-		if index < usize::try_from(position).ok().unwrap() {
-			continue;
-		}
-
-		if char == character {
-			return index as isize;
-		}
-	}
-
-	return -1;
-}
-
-
-
-fn unwrap_usize(index: Option<usize>) -> isize {
-	return match index {
-		Some(n) => n as isize,
-		None => -1
-	};
-}
-
-
-
-fn read_line() -> String {
-	let mut input = String::new();
-
-	let stdin = io::stdin();
-
-	stdin.read_line(&mut input).expect("should've been able to read line!");
-
-	// there's probably a better way to do this but I don't think I want a slice here (?)
-	// also because slices are references and i can't have a dangling reference ig this is best
-	let trimmed = input.trim().to_string();
-
-	return trimmed;
 }
