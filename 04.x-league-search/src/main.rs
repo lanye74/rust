@@ -23,9 +23,10 @@ fn main() {
 
 	let mut filtered: HashMap<usize, isize> = HashMap::new();
 
-	// https://stackoverflow.com/a/66289009
+	// necessary because uhhh idk compiler told me so
 	let binding = champs_vec.clone();
-	// more efficient to do this out here rather than in the loop
+	// https://stackoverflow.com/a/66289009
+	// more efficient to map to lower here rather than in the loop
 	let _champions_iterable = binding.iter().map(|champ| champ.to_ascii_lowercase()).enumerate();
 	let characters_iterable = input_chars.iter().enumerate();
 
@@ -90,6 +91,7 @@ fn main() {
 
 	// did some very unofficial benchmarking and it looks like slices are slightly faster for both smaller and larger datasets
 	// ionknow if it is. ionknow what best practice is. don't ask me
+	// goofy syntax &champs_vec[*champ][..]
 	let champs_output = champs_output.map(|champ| &champs_vec[*champ][..]);
 	// turbofish :)
 	let mut champs_output = champs_output.collect::<Vec<&str>>();
