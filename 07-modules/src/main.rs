@@ -1,5 +1,7 @@
 mod hello_world;
 
+
+
 mod world {
 	pub mod hello {
 		pub fn say() {
@@ -13,8 +15,6 @@ mod world {
 		println!("Hello from outside!");
 	}
 }
-
-
 
 // pub use world::hello;
 // re-export so that external files can now call lib::hello::say();
@@ -32,18 +32,16 @@ mod module2 {
 
 
 
-
 fn main() {
 	hello_world::say();
 
 	// absolute path:
 	// crate::world::hello::say();
+
 	world::hello::say();
 
 	// use world::hello;
 	// hello::say();
 
-
 	module2::speak();
-
 }
