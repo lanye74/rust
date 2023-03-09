@@ -9,7 +9,7 @@ fn main() {
 
 	map.insert("key", "value");
 
-	let value = map.get("key").unwrap();
+	let _value = map.get("key").unwrap();
 
 	// hashmaps take ownership of owned values; copies values with the Copy trait
 
