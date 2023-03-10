@@ -13,4 +13,3 @@ fn main() {
 	assert_eq!(vector::median(&data_set), 5.0);
 	assert_eq!(vector::mode(&data_set), vec![7]);
 }
-

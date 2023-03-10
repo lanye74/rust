@@ -40,15 +40,32 @@ pub fn median(input: &Vec<i32>) -> f32 {
 
 pub fn mode(input: &Vec<i32>) -> Vec<i32> {
 	let mut map: HashMap<i32, i32> = HashMap::new();
+	let mut output: Vec<i32> = Vec::new();
+
+	let mut highest_count = 0;
 
 	for number in input.iter() {
 		let count = map.entry(*number).or_insert(0);
 		*count += 1;
+
+		if *count > highest_count {
+			highest_count = *count;
+		}
 	}
 
-	// ?????????
 
-	return vec![3];
+	for (i, count) in map.values().enumerate() {
+		let number = map.keys().nth(i).unwrap();
+
+		if (*count) == highest_count {
+			output.push(*number);
+		}
+	}
+
+	output.sort();
+
+
+	return output;
 }
 
 
