@@ -22,12 +22,19 @@ pub fn median(input: &Vec<i32>) -> f32 {
 
 	let mut medians: Vec<i32> = vec![];
 
+	let half_length = length / 2.0;
+
+	// even number of elements = 2 median points
 	if length % 2.0 == 0.0 {
-		// this is awful code
-		medians.push(*sorted.get((length / 2.0 - 1.0) as usize).unwrap());
-		medians.push(*sorted.get((length / 2.0) as usize).unwrap());
+		let left_median = (half_length - 1.0) as usize;
+		let right_median = half_length as usize;
+
+		medians.push(*sorted.get(left_median).unwrap());
+		medians.push(*sorted.get(right_median).unwrap());
 	} else {
-		medians.push(*sorted.get((length / 2.0 - 0.5) as usize).unwrap());
+		let median = (half_length - 0.5) as usize;
+
+		medians.push(*sorted.get(median).unwrap());
 	}
 
 
@@ -42,28 +49,25 @@ pub fn mode(input: &Vec<i32>) -> Vec<i32> {
 	let mut map: HashMap<i32, i32> = HashMap::new();
 	let mut output: Vec<i32> = Vec::new();
 
-	let mut highest_count = 0;
+	let mut highest_count = 1;
 
 	for number in input.iter() {
-		let count = map.entry(*number).or_insert(0);
-		*count += 1;
+		let times_appeared = map.entry(*number).or_insert(0);
+		*times_appeared += 1;
 
-		if *count > highest_count {
-			highest_count = *count;
-		}
-	}
-
-
-	for (i, count) in map.values().enumerate() {
-		let number = map.keys().nth(i).unwrap();
-
-		if (*count) == highest_count {
+		if *times_appeared == highest_count {
 			output.push(*number);
+		}
+
+		if *times_appeared > highest_count {
+			// reset array
+			output = vec![*number];
+
+			highest_count = *times_appeared;
 		}
 	}
 
 	output.sort();
-
 
 	return output;
 }
