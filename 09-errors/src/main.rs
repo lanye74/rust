@@ -24,11 +24,22 @@ fn main() {
 			ErrorKind::NotFound => {}, // possibly create file here or whatever with another match handlign it
 			_ => {} // whatever other errors
 		}
-	}
+	};
 
 	// alternatively
-	file_result.unwrap_or_else(|error| {
+	file_result.unwrap_or_else(|_error| {
 		// code that returns a file here
-		panic!("issue!")
+		panic!("issue!");
 	});
+
+
+	// unwrap value/panic if err
+	result.unwrap();
+
+	// unwrap value/panic with message if err
+	result.expect("something should've worked!");
+
+	// propagate errors via ?
+	// let file = File::open("hello.txt")?;
+	// unwraps if it exists, returns Err if not
 }
