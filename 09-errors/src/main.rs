@@ -21,7 +21,7 @@ fn main() {
 		// no idea what ref is but i need it apparently
 		Ok(ref _file) => {},
 		Err(ref error) => match error.kind() {
-			ErrorKind::NotFound => {}, // possibly create file here or whatever with another match handlign it
+			ErrorKind::NotFound => {}, // possibly create file here or whatever with another match handling it
 			_ => {} // whatever other errors
 		}
 	};
