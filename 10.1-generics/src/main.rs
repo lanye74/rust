@@ -20,6 +20,7 @@ fn largest<T>(list: &Vec<T>) -> &T {
 
 
 
+#[allow(unused)]
 struct Vector<T> {
 	x: T,
 	y: T
