@@ -4,6 +4,19 @@ use vector::ArithmeticOperations;
 
 
 
+trait OtherTrait {
+
+}
+
+
+
+#[allow(unused)]
+struct Vector<T> {
+	x: T,
+	y: T
+}
+
+
 
 fn main() {
 	let data_set = vec![6, 4, 3, 9, 2, 7, 7, 1, 2, 7];
@@ -31,12 +44,6 @@ fn _trait_bound<T: ArithmeticOperations>(_item: &T) {
 
 
 
-trait OtherTrait {
-
-}
-
-
-
 fn _impl_both<T: ArithmeticOperations + OtherTrait>(_item: &T) {
 	// ...
 }
@@ -50,7 +57,21 @@ where
 
 
 
-// does NOT allow returning vec | [other type that implements]
+// only allows returning of one concrete type, not possibly multiple
 fn _returns_arithmetic_impl() -> impl ArithmeticOperations {
 	return vec![1];
+}
+
+
+
+// implement function for Vector, only if it's a Vector<T> where T implements both ArithmeticOperations and OtherTrait
+impl<T: ArithmeticOperations + OtherTrait> Vector<T> {
+	//
+}
+
+
+
+// implement ArithmeticOperations on any type implementing OtherTrait (blanket implmentations)
+impl <T: OtherTrait> ArithmeticOperations for T {
+
 }

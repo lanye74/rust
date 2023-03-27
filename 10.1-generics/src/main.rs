@@ -29,8 +29,7 @@ struct Vector<T> {
 
 
 impl<T> Vector<T> {
-	#[allow(non_snake_case)]
-	fn _midpoint_with_T(&self, other: Vector<T>) -> T {
+	fn _midpoint_with_generic(&self, other: Vector<T>) -> T {
 		// math here; refer to below
 		return other.x;
 	}
