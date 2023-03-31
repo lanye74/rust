@@ -5,14 +5,13 @@ fn main() {
 
 
 
-fn largest<T>(list: &Vec<T>) -> &T {
-	let /*mut*/largest = &list[0];
+fn largest<T: std::cmp::PartialOrd>(list: &Vec<T>) -> &T {
+	let mut largest = &list[0];
 
-	for _item in list {
-		// cannot compare because T may not implement the comparison operator trait
-		// if item > largest {
-		// 	largest = item;
-		// }
+	for item in list {
+		if item > largest {
+			largest = item;
+		}
 	}
 
 	return largest;

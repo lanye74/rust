@@ -1,5 +1,5 @@
 fn main() {
-    println!("Hello, world!");
+	println!("Hello, world!");
 
 	/*
 	let outer; // lifetime A begins

@@ -17,7 +17,6 @@ impl ArithmeticOperations for Vec<i32> {
 
 		let length = self.len() as f32;
 
-
 		return sum as f32 / length;
 	}
 
