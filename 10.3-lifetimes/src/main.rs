@@ -79,6 +79,7 @@ fn longest_slice<'a>(slice_one: &'a str, slice_two: &'a str) -> &'a str {
 // fn elision<'a>(input: &'a str) -> &'a str {
 // which is a really common pattern which ends up being written constantly. so rust can infer some lifetimes
 // on the ones it cannot infer, it throws an error and asks you to instead
+#[allow(unused)]
 fn elision(argument: &str) -> &str {
 	return &argument[0..2];
 }
