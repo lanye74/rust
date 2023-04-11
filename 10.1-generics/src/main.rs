@@ -1,3 +1,8 @@
+#[allow(unused_imports)]
+use std::iter::Sum;
+
+
+
 fn main() {
 	let list = vec![1, 2, 3];
 	let _three = largest(&list);
@@ -47,6 +52,21 @@ impl Vector<f32> {
 		};
 	}
 }
+
+
+
+// fn average<'a, T>(input: &'a Vec<T>) -> f32
+// where
+// 	T: Sum + Sum<&'a T>,
+// 	i32: Sum<&'a T>,
+// 	f32: Sum<&'a T>
+// {
+// 	let sum = input.iter().sum::<f32>();
+
+// 	let length = input.len() as f32;
+
+// 	return sum / length;
+// }
 
 
 
