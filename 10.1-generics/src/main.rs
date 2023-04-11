@@ -19,7 +19,7 @@ fn largest<T: std::cmp::PartialOrd>(list: &Vec<T>) -> &T {
 
 
 
-#[allow(unused)]
+#[allow(dead_code)]
 struct Vector<T> {
 	x: T,
 	y: T

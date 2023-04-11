@@ -37,12 +37,12 @@ fn main() {
 
 	// lifetime annotations tell rust how lifetime parameters of multiple references relate to one another
 
-
 	let bel = String::from("bel'veth");
 	let longest;
 
 	{
 		let kayn = String::from("kayn");
+		// slices must be created here because otherwise they will have static lifetimes (see below)
 		longest = longest_slice(&bel[..], &kayn[..]);
 
 		// no issue
@@ -51,6 +51,11 @@ fn main() {
 
 	// throws error. the value could be kayn, which has been dropped
 	// println!("{}", longest);
+
+	// 'static lifetime
+	let _string: &'static str = "all literals have static lifetimes";
+
+	// static lifetimes live for the entire program, such as string literals, which are hardcoded into the binary
 }
 
 
@@ -78,25 +83,32 @@ fn longest_slice<'a>(slice_one: &'a str, slice_two: &'a str) -> &'a str {
 // theoretically you would need a lifetime here... and you used to. however, you would be writing
 // fn elision<'a>(input: &'a str) -> &'a str {
 // which is a really common pattern which ends up being written constantly. so rust can infer some lifetimes
-// on the ones it cannot infer, it throws an error and asks you to instead
-#[allow(unused)]
-fn elision(argument: &str) -> &str {
+fn _elision(argument: &str) -> &str {
 	return &argument[0..2];
 }
 
-// three rules to elide lifetimes. if the compiler cannot figure out all lifetimes in the signature,
-// then lifetimes need to be manually specified.
+// three rules the compiler uses to infer lifetimes:
 // rule 1: each input (reference) parameter gets its own lifetime
 // rule 2: if there is only one input reference parameter, that lifetime is assigned to the output parameter
 // rule 3: if in a method, the lifetime of self is assigned to all output lifetime parameters
-
-
+// if the compiler cannot infer all lifetimes in the signature, then lifetimes need to be manually specified.
 
 
 
 // structs can also take lifetimes
 // the struct cannot outlive its reference
-#[allow(unused)]
+#[allow(dead_code)]
 struct ContainsReference<'a> {
 	reference: &'a str
+}
+
+
+
+impl <'a> ContainsReference<'a> {
+	fn _method(&self, _input: &str) -> &str {
+		// return _input;
+		// rule 3 states that the return value must have the same lifetime as &self
+
+		return self.reference;
+	}
 }

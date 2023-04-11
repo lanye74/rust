@@ -10,7 +10,7 @@ trait OtherTrait {
 
 
 
-#[allow(unused)]
+#[allow(dead_code)]
 struct Vector<T> {
 	x: T,
 	y: T
