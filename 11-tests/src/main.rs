@@ -36,7 +36,7 @@ mod tests {
 
 	#[test]
 	fn result() -> Result<(), ()> {
-		// this also allwos you to use the ? operator
+		// this also allows you to use the ? operator
 		return Ok(());
 	}
 }
