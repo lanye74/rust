@@ -18,11 +18,16 @@ mod tests {
 		// assert_eq!(a, b) - success if a == b
 		// assert_ne!(a, b) - success if a != b
 
+
+		println!("this text will not show");
+
 		assert!(2 + 2 == 4);
 	}
 
 	#[test]
 	fn panic_fails() {
+		println!("this text will show");
+
 		panic!(":(");
 	}
 
@@ -38,5 +43,11 @@ mod tests {
 	fn result() -> Result<(), ()> {
 		// this also allows you to use the ? operator
 		return Ok(());
+	}
+
+	#[test]
+	#[ignore]
+	fn will_not_run_unless_specified() {
+		panic!("gooby");
 	}
 }
