@@ -11,7 +11,7 @@ pub fn read_line() -> String {
 
 	// there's probably a better way to do this but I don't think I want a slice here (?)
 	// also because slices are references and i can't have a dangling reference ig this is best
-	let trimmed = input.trim().to_string();
+	let trimmed = input.trim().to_owned();
 
 	return trimmed;
 }
