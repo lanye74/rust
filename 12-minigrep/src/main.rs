@@ -1,4 +1,6 @@
-use std::{env, fs};
+use std::{env, process};
+
+use minigrep::{Config, run};
 
 
 
@@ -6,14 +8,18 @@ fn main() {
 	// the book wants me to annotate the type. i will use turbofish instead. no one can stop me.
 	let args = env::args().collect::<Vec<String>>();
 
-	let query = &args[1];
-	let file_path = &args[2];
+	let config = Config::new(&args).unwrap_or_else(|err| {
+		println!("Problem parsing arguments: {err}");
+		process::exit(1);
+	});
 
-	println!("Searching for {} in file {}", query, file_path);
+	println!("Searching for \"{}\" in file \"{}\"", config.query, config.file_path);
 
 
-	let file = fs::read_to_string(file_path)
-		.expect("should've been able to read file!");
+	let err = run(config);
 
-	println!("File contents:\n{}", file);
+	if let Err(err) = err {
+		println!("Application error: {err}");
+		process::exit(1);
+	}
 }
