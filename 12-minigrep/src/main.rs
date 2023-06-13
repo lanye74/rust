@@ -13,8 +13,6 @@ fn main() {
 		process::exit(1);
 	});
 
-	println!("Searching for \"{}\" in file \"{}\"", config.query, config.file_path);
-
 
 	let err = run(config);
 
