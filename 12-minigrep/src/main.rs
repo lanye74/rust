@@ -9,7 +9,7 @@ fn main() {
 	let args = env::args().collect::<Vec<String>>();
 
 	let config = Config::new(&args).unwrap_or_else(|err| {
-		println!("Problem parsing arguments: {err}");
+		eprintln!("Problem parsing arguments: {err}");
 		process::exit(1);
 	});
 
@@ -17,7 +17,7 @@ fn main() {
 	let err = run(config);
 
 	if let Err(err) = err {
-		println!("Application error: {err}");
+		eprintln!("Application error: {err}");
 		process::exit(1);
 	}
 }
